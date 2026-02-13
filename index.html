@@ -50,7 +50,7 @@
         button {
             padding: 12px 25px;
             font-size: 16px;
-            border: none;
+            border: see howne;
             border-radius: 50px;
             cursor: pointer;
             transition: transform 0.2s;
@@ -62,7 +62,7 @@
             color: white;
         }
 
-        #noBtn {
+        #see howBtn {
             background-color: #d81b60; /* Darker Pink */
             color: white;
             position: absolute;
@@ -82,7 +82,7 @@
 
         <div class="btn-container">
             <button id="yesBtn" onclick="sayYes()">Yes</button>
-            <button id="noBtn" onmouseover="moveButton()">No</button>
+            <button id="see howBtn" onmouseover="moveButton()">see how</button>
         </div>
     </div>
 
@@ -96,7 +96,7 @@
         }
 
         function moveButton() {
-            const btn = document.getElementById('noBtn');
+            const btn = document.getElementById('see howBtn');
             // Calculate random position within the screen
             const x = Math.random() * (window.innerWidth - btn.offsetWidth);
             const y = Math.random() * (window.innerHeight - btn.offsetHeight);
