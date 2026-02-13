@@ -143,23 +143,27 @@
             const btn = document.getElementById('noBtn');
             btn.style.position = 'absolute'; // This is what makes it "fly"
 
-            const screenWidth = window.innerWidth;
-            const screenHeight = window.innerHeight;
+            // 1. Get current position (or default to center if it hasn't moved yet)
+    const currentX = btn.offsetLeft;
+    const currentY = btn.offsetTop;
 
-            const maxX = screenWidth - btn.offsetWidth - 100;
-    const maxY = screenHeight - btn.offsetHeight - 100;
+    // 2. Set the "Jump Distance" (Higher = further jumps, Lower = shorter jumps)
+    const jumpDistance = 200; 
 
-    // 3. Generate random spot, but FORCE it between 50px and the Max Safe spot
-    let randomX = Math.floor(Math.random() * maxX);
-    let randomY = Math.floor(Math.random() * maxY);
+    // 3. Calculate a new spot relative to the current position
+    let newX = currentX + (Math.random() * (jumpDistance * 2) - jumpDistance);
+    let newY = currentY + (Math.random() * (jumpDistance * 2) - jumpDistance);
 
-    // 4. The Failsafe: If the number is too small, make it 50. 
-    // If it's too big, cap it at maxX.
-    randomX = Math.max(50, Math.min(randomX, maxX));
-    randomY = Math.max(50, Math.min(randomY, maxY));
+    // 4. Boundary Guard: Keep it within the screen edges
+    const maxX = window.innerWidth - btn.offsetWidth - 50;
+    const maxY = window.innerHeight - btn.offsetHeight - 50;
 
-            btn.style.left = randomX + 'px';
-            btn.style.top = randomY + 'px';
+    // Force it to stay within 50px and the Max Width/Height
+    newX = Math.max(50, Math.min(newX, maxX));
+    newY = Math.max(50, Math.min(newY, maxY));
+
+    btn.style.left = newX + 'px';
+    btn.style.top = newY + 'px';
         }
 
         function createHeart() {
