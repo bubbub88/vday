@@ -66,7 +66,8 @@
             background-color: #d81b60; /* Darker Pink */
             color: white;
             position: absolute;
-            transition: 0.1s;  /* Makes the movement look smoother */
+            transition: 0.2s ease;  /* Makes the movement look smoother */
+            margin-left: 50px;
         }
 
         #yesBtn:hover {
@@ -102,16 +103,27 @@
 
         <div class="btn-container">
             <button id="yesBtn" onclick="sayYes()">Yes</button>
-            <button id="noBtn" onmouseover="moveButton()">no</button>
+            <button id="noBtn" onmouseover="moveButton()" style="position: relative;
         </div>
     </div>
 
     <script>
         function sayYes() {
-            // This clears the page and shows your message
             document.body.innerHTML = `
-                <div style="text-align:center; font-family:Arial; color:#ad1457;">
-                    <h1 style="font-size: 80px;">YAY! Not like you could say no hehe</h1>
+        <div style="text-align:center; font-family:Arial; color:#ad1457; padding-top: 20vh; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            <h1 style="font-size: 80px; margin: 0;">YAY! not like you could say no hehe</h1>
+            
+            <button onclick="location.reload()" 
+                style="padding: 12px 25px; 
+                       background-color: #d81b60; 
+                       color: white; 
+                       border: 2px solid #ad1457; 
+                       border-radius: 50px; 
+                       cursor: pointer; 
+                       font-weight: bold; 
+                       font-size: 16px;">
+                Back to Start
+            </button>
                 </div>`;
         }
 
