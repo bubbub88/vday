@@ -143,11 +143,14 @@
             const btn = document.getElementById('noBtn');
             btn.style.position = 'absolute'; // This is what makes it "fly"
 
-            const maxWidth = window.innerWidth - btn.offsetWidth - 50;
-            const maxHeight = window.innerHeight - btn.offsetHeight - 50;
+            const width = window.innerWidth;
+            const height = window.innerHeight;
 
-            const randomX = Math.max(20, Math.floor(Math.random() * maxWidth));
-            const randomY = Math.max(20, Math.floor(Math.random() * maxHeight));
+            const maxWidth = width - btn.offsetWidth - 50;
+            const maxHeight = height - btn.offsetHeight - 50;
+
+            const randomX = Math.floor(Math.random() * maxWidth - 50 + 1)) + 50;
+            const randomY = Math.floor(Math.random() * maxHeight - 50 + 1)) + 50;
 
             btn.style.left = randomX + 'px';
             btn.style.top = randomY + 'px';
