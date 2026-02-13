@@ -24,15 +24,16 @@
             text-align: center;
             width: 350px;
             position: relative;
+            z-index: 10;
         }
 
         .main-img {
             width: 100%;
-            height: 200px;
+            height: auto;
+            max-height: 250px;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 20px;
-            background-color: #eee; /* Placeholder grey */
         }
 
         h1 {
@@ -45,6 +46,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            align-items: center;
         }
 
         button {
@@ -58,114 +60,111 @@
         }
 
         #yesBtn {
-            background-color: #d81b60; /* Darker Pink */
+            background-color: #d81b60;
             color: white;
         }
 
         #noBtn {
-            background-color: #d81b60; /* Darker Pink */
+            background-color: #d81b60;
             color: white;
-            position: absolute;
-            transition: 0.2s ease;  /* Makes the movement look smoother */
-            margin-left: 50px;
+            transition: 0.2s ease;
         }
 
         #yesBtn:hover {
             transform: scale(1.1);
         }
+
         .heart {
-    position: fixed;
-    color: #d81b60; /* Same pink as your buttons */
-    font-size: 20px;
-    user-select: none;
-    pointer-events: none; /* So they don't block your buttons */
-    z-index: 0; /* Keeps them behind your widget */
-    animation: float 4s linear forwards;
-}
+            position: fixed;
+            color: #d81b60;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 4s linear forwards;
+        }
+
         @keyframes float {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-10vh) rotate(360deg);
-        opacity: 0;
-    }
-}
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px #fff, 0 0 20px 5px #ffeb3b;
+            animation: sparkle-anim 1.5s infinite;
+        }
+
+        @keyframes sparkle-anim {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
     <div class="widget">
-        <img src="5head.jpeg" alt="5head" class="main-img">
-        
+        <img src="5head.jpeg" alt="Valentine" class="main-img">
         <h1>Will you be my valentine? ❤️</h1>
-
         <div class="btn-container">
             <button id="yesBtn" onclick="sayYes()">Yes</button>
-            <button id="noBtn" onmouseover="moveButton()" style="position: relative;
+            <button id="noBtn" onmouseover="moveButton()" style="position: relative;">see how?</button>
         </div>
     </div>
 
     <script>
         function sayYes() {
             document.body.innerHTML = `
-        <div style="text-align:center; font-family:Arial; color:#ad1457; padding-top: 20vh; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-            <h1 style="font-size: 80px; margin: 0;">YAY! not like you could say no hehe</h1>
-            
-            <button onclick="location.reload()" 
-                style="padding: 12px 25px; 
-                       background-color: #d81b60; 
-                       color: white; 
-                       border: 2px solid #ad1457; 
-                       border-radius: 50px; 
-                       cursor: pointer; 
-                       font-weight: bold; 
-                       font-size: 16px;">
-                Back to Start
-            </button>
-                </div>`;
+            <div style="text-align:center; font-family:Arial; color:#ad1457; padding-top: 20vh; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                <h1 style="font-size: 60px; margin: 0; z-index: 100;">YAY! not like you could say no hehe ✨</h1>
+                <button onclick="location.reload()" 
+                    style="padding: 12px 25px; background-color: #d81b60; color: white; border: 2px solid #ad1457; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 16px; z-index: 100;">
+                    Back to Start
+                </button>
+            </div>`;
+
+            // Add sparkles on Yes click
+            for (let i = 0; i < 50; i++) {
+                let sparkle = document.createElement("div");
+                sparkle.className = "sparkle";
+                sparkle.style.top = Math.random() * 100 + "vh";
+                sparkle.style.left = Math.random() * 100 + "vw";
+                sparkle.style.animationDelay = Math.random() * 2 + "s";
+                document.body.appendChild(sparkle);
+            }
         }
 
         function moveButton() {
             const btn = document.getElementById('noBtn');
-            // This calculates the screen size minus the button size
-    // so it never "bounces" off the edge.
-    const maxWidth = window.innerWidth - btn.offsetWidth - 50;
-    const maxHeight = window.innerHeight - btn.offsetHeight - 50;
-    
-    // Generate a position that is always visible
-    const randomX = Math.max(20, Math.floor(Math.random() * maxWidth));
-    const randomY = Math.max(20, Math.floor(Math.random() * maxHeight));
-    
-    btn.style.left = randomX + 'px';
-    btn.style.top = randomY + 'px';
+            btn.style.position = 'absolute'; // This is what makes it "fly"
+
+            const maxWidth = window.innerWidth - btn.offsetWidth - 50;
+            const maxHeight = window.innerHeight - btn.offsetHeight - 50;
+
+            const randomX = Math.max(20, Math.floor(Math.random() * maxWidth));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxHeight));
+
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
         }
-function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.innerHTML = '😍'; // You can change this to any emoji
-    
-    // Random position across the width of the screen
-    heart.style.left = Math.random() * 100 + "vw";
-    
-    // Random size for variety
-    heart.style.fontSize = Math.random() * 20 + 10 + "px";
-    
-    // Random duration so they don't all move at the same speed
-    heart.style.animationDuration = Math.random() * 2 + 3 + "s";
-    
-    document.body.appendChild(heart);
 
-    // Remove heart after animation ends so the page doesn't get laggy
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '😍';
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = Math.random() * 20 + 10 + "px";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
 
-// Start creating hearts
-setInterval(createHeart, 300);
+        setInterval(createHeart, 300);
     </script>
-
 </body>
 </html>
