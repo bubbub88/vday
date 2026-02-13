@@ -143,14 +143,20 @@
             const btn = document.getElementById('noBtn');
             btn.style.position = 'absolute'; // This is what makes it "fly"
 
-            const width = window.innerWidth;
-            const height = window.innerHeight;
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
 
-            const maxWidth = width - btn.offsetWidth - 50;
-            const maxHeight = height - btn.offsetHeight - 50;
+            const maxX = screenWidth - btn.offsetWidth - 100;
+    const maxY = screenHeight - btn.offsetHeight - 100;
 
-            const randomX = Math.floor(Math.random() * maxWidth - 50 + 1) + 50;
-            const randomY = Math.floor(Math.random() * maxHeight - 50 + 1) + 50;
+    // 3. Generate random spot, but FORCE it between 50px and the Max Safe spot
+    let randomX = Math.floor(Math.random() * maxX);
+    let randomY = Math.floor(Math.random() * maxY);
+
+    // 4. The Failsafe: If the number is too small, make it 50. 
+    // If it's too big, cap it at maxX.
+    randomX = Math.max(50, Math.min(randomX, maxX));
+    randomY = Math.max(50, Math.min(randomY, maxY));
 
             btn.style.left = randomX + 'px';
             btn.style.top = randomY + 'px';
