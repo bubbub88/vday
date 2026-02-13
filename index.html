@@ -72,6 +72,25 @@
         #yesBtn:hover {
             transform: scale(1.1);
         }
+        .heart {
+    position: fixed;
+    color: #d81b60; /* Same pink as your buttons */
+    font-size: 20px;
+    user-select: none;
+    pointer-events: none; /* So they don't block your buttons */
+    z-index: 0; /* Keeps them behind your widget */
+    animation: float 4s linear forwards;
+}
+        @keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
     </style>
 </head>
 <body>
@@ -98,13 +117,42 @@
 
         function moveButton() {
             const btn = document.getElementById('noBtn');
-            // Calculate random position within the screen
-            const x = Math.random() * (window.innerWidth - 150);
-            const y = Math.random() * (window.innerHeight - 50);
-            
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+            // This calculates the screen size minus the button size
+    // so it never "bounces" off the edge.
+    const maxWidth = window.innerWidth - btn.offsetWidth - 50;
+    const maxHeight = window.innerHeight - btn.offsetHeight - 50;
+    
+    // Generate a position that is always visible
+    const randomX = Math.max(20, Math.floor(Math.random() * maxWidth));
+    const randomY = Math.max(20, Math.floor(Math.random() * maxHeight));
+    
+    btn.style.left = randomX + 'px';
+    btn.style.top = randomY + 'px';
         }
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '😍'; // You can change this to any emoji
+    
+    // Random position across the width of the screen
+    heart.style.left = Math.random() * 100 + "vw";
+    
+    // Random size for variety
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+    
+    // Random duration so they don't all move at the same speed
+    heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+    
+    document.body.appendChild(heart);
+
+    // Remove heart after animation ends so the page doesn't get laggy
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+// Start creating hearts
+setInterval(createHeart, 300);
     </script>
 
 </body>
