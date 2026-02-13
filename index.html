@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello mr baddie</title>
+    <title>Wyd on 14 Feb 2026?</title>
     <style>
         body {
             margin: 0;
@@ -110,7 +110,7 @@
 
     <div class="widget">
         <img src="dogwine.jpg" alt="Valentine" class="main-img">
-        <h1>ni hao fine shyt, will u be my valentine? <3 </h1>
+        <h1>ni hao fine shyt, <br> will u be my valentine? <3 </h1>
         <div class="btn-container">
             <button id="yesBtn" onclick="sayYes()">Yes</button>
             <button id="noBtn" onmouseover="moveButton()" style="position: relative;">see how?</button>
@@ -120,12 +120,19 @@
     <script>
         function sayYes() {
             document.body.innerHTML = `
-            <div style="text-align:center; font-family:Arial; color:#ad1457; padding-top: 20vh; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-                <h1 style="font-size: 60px; margin: 0; z-index: 100;">not like you had a choice. see you later for yummy italian food 🍝</h1>
-                <button onclick="location.reload()" 
-                    style="padding: 12px 25px; background-color: #d81b60; color: white; border: 2px solid #ad1457; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 16px; z-index: 100;">
-                    back
-                </button>
+    <div style="text-align:center; font-family:Arial; padding-top: 15vh; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+        
+        <div style="background-color: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); width: 80%; max-width: 500px; z-index: 100;">
+            <h1 style="font-size: 40px; color: #ad1457; margin: 0; line-height: 1.2;">
+                not like you had a choice. <br> 
+                see you later for yummy italian food 🍝
+            </h1>
+        </div>
+
+        <button onclick="location.reload()" 
+            style="padding: 12px 25px; background-color: #d81b60; color: white; border: 2px solid #ad1457; border-radius: 50px; cursor: pointer; font-weight: bold; font-size: 16px; z-index: 100;">
+            back
+        </button>
             </div>`;
 
             // Add sparkles on Yes click
