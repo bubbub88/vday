@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wyd on 14 Feb 2026?</title>
+    <title>Wyd on 14 Feb 2026? 👀</title>
     <style>
         body {
             margin: 0;
@@ -113,7 +113,7 @@
         <h1>ni hao fine shyt, <br> will u be my valentine? <3 </h1>
         <div class="btn-container">
             <button id="yesBtn" onclick="sayYes()">Yes</button>
-            <button id="noBtn" onmouseover="moveButton()" style="position: relative;">see how?</button>
+            <button id="noBtn" onmouseover="moveButton()" style="position: relative;">see how la</button>
         </div>
     </div>
 
@@ -123,7 +123,7 @@
     <div style="text-align:center; font-family:Arial; padding-top: 15vh; display: flex; flex-direction: column; align-items: center; gap: 20px;">
         
         <div style="background-color: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); width: 80%; max-width: 500px; z-index: 100;">
-            <h1 style="font-size: 40px; color: #ad1457; margin: 0; line-height: 1.2;">
+            <h1 style="font-size: 36px; color: #ad1457; margin: 0; line-height: 1.2;">
                 not like you had a choice. <br> 
                 see you later for yummy italian food 🍝
             </h1>
@@ -150,22 +150,23 @@
             const btn = document.getElementById('noBtn');
             btn.style.position = 'absolute'; // This is what makes it "fly"
 
-            // 1. Get current position (or default to center if it hasn't moved yet)
+            // --- NEW: Change text and colors on hover ---
+    btn.innerText = "wtf?";
+    btn.style.backgroundColor = "black";
+    btn.style.color = "white";
+    // --------------------------------------------
+
     const currentX = btn.offsetLeft;
     const currentY = btn.offsetTop;
 
-    // 2. Set the "Jump Distance" (Higher = further jumps, Lower = shorter jumps)
     const jumpDistance = 200; 
 
-    // 3. Calculate a new spot relative to the current position
     let newX = currentX + (Math.random() * (jumpDistance * 2) - jumpDistance);
     let newY = currentY + (Math.random() * (jumpDistance * 2) - jumpDistance);
 
-    // 4. Boundary Guard: Keep it within the screen edges
     const maxX = window.innerWidth - btn.offsetWidth - 50;
     const maxY = window.innerHeight - btn.offsetHeight - 50;
 
-    // Force it to stay within 50px and the Max Width/Height
     newX = Math.max(50, Math.min(newX, maxX));
     newY = Math.max(50, Math.min(newY, maxY));
 
